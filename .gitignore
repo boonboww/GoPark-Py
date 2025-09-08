@@ -1,0 +1,25 @@
+# Bỏ thư mục môi trường ảo
+venv/
+ENV/
+env/
+
+# Bỏ thư mục cache của Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Bỏ file log
+*.log
+
+# Bỏ file hệ thống IDE
+.vscode/
+.idea/
+
+# Bỏ file dữ liệu tạm
+*.tmp
+*.swp
+.DS_Store
+
+# Nếu dùng Jupyter
+.ipynb_checkpoints/
