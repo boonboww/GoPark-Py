@@ -1,56 +1,73 @@
-# GoPark Python OCR Service
+# GoPark-Py
 
-Vietnamese License Plate Recognition service using EasyOCR and FastAPI.
 
-## Features
-- License plate detection and recognition
-- Image preprocessing for better accuracy
-- RESTful API with FastAPI
-- Memory optimized for deployment
-- CORS enabled for web integration
+# 🚗 GoPark-PY – Dịch vụ Nhận diện Biển số Xe (ALPR Service)
 
-## API Endpoints
+## 📌 Giới thiệu
 
-### Health Check
+**GoPark-PY** là một dịch vụ Python hỗ trợ **Automatic License Plate Recognition (ALPR)** – nhận diện và trích xuất biển số xe từ hình ảnh.
+Dự án này được thiết kế như một dịch vụ độc lập, dễ tích hợp vào các ứng dụng quản lý bãi đỗ xe hoặc hệ thống giám sát.
+
+## ⚙️ Chức năng chính
+
+* Phát hiện và đọc biển số xe từ ảnh.
+* Tiền xử lý ảnh để tăng độ chính xác nhận diện.
+* Kết quả trả về dưới dạng văn bản.
+* Dễ dàng mở rộng hoặc tích hợp API.
+
+## 🛠️ Yêu cầu hệ thống
+
+* Python >= 3.8
+* Thư viện cần thiết (khai báo trong `requirements.txt`):
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+* Cài đặt Tesseract OCR:
+
+  * Windows: [Hướng dẫn cài đặt](https://github.com/UB-Mannheim/tesseract/wiki)
+  * Linux/macOS:
+
+    ```bash
+    sudo apt install tesseract-ocr
+    ```
+
+## 🚀 Cách sử dụng
+
+1. Tạo môi trường ảo và cài đặt thư viện:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/macOS
+   venv\Scripts\activate     # Windows
+   pip install -r requirements.txt
+   ```
+2. Chạy dịch vụ:
+
+   ```bash
+   python alpr_service.py --image path/to/image.jpg
+   ```
+
+## 📂 Cấu trúc dự án
+
 ```
-GET /health
+GOPARK-PY/
+├── __pycache__/        # Cache của Python
+├── venv/               # Virtual environment
+├── alpr_service.py     # File chính chạy dịch vụ ALPR
+├── requirements.txt    # Danh sách thư viện cần thiết
+└── README.md           # Tài liệu dự án
 ```
 
-### Scan License Plate
-```
-POST /scan_plate
-Content-Type: multipart/form-data
-Body: file (image file)
-```
+## 📑 Kết quả
 
-Response:
-```json
-{
-  "success": true,
-  "plate": "29A12345",
-  "candidates": [...],
-  "total_detections": 5
-}
-```
+Khi chạy thành công, chương trình sẽ:
 
-## Local Development
+* Hiển thị ảnh gốc và vùng chứa biển số xe.
+* In ra văn bản biển số đã nhận diện.
 
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+## 🤝 Đóng góp
 
-2. Run server:
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
+Mọi đóng góp (issues, pull request) đều được hoan nghênh để cải thiện hệ thống.
 
-## Deploy to Render
 
-1. Connect GitHub repo to Render
-2. Build Command: `pip install --upgrade pip && pip install -r requirements.txt`
-3. Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-4. Environment Variables:
-   - `PYTHON_VERSION=3.11`
-   - `PORT=8000`
-   - `PYTHONUNBUFFERED=1`
